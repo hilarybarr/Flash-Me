@@ -1,8 +1,8 @@
 class CreateCards < ActiveRecord::Migration
   def change
     create_table :cards do |t|
-      t.strings :hint
-      t.strings :answer
+      t.string :hint
+      t.string :answer
     end
   end
 end
