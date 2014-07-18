@@ -16,8 +16,8 @@ end
 post '/sessions' do
   # sign-in
   @email = params[:email]
-  user = User.authenticate(@email, params[:password])
-  if user
+  user = User.where(email: @email).first
+  if params[:password] == user[:password]
     # successfully authenticated; set up session and redirect
     session[:user_id] = user.id
     redirect '/'
@@ -46,6 +46,10 @@ end
 
 post '/users' do
   # sign-up
+
+  password_salt = BCrypt::Engine.generate_salt
+  password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+
   @user = User.new params[:user]
   if @user.save
     # successfully created new account; set up the session and redirect
