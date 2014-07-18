@@ -20,7 +20,7 @@ post '/sessions' do
   if params[:password] == user[:password]
     # successfully authenticated; set up session and redirect
     session[:user_id] = user.id
-    redirect '/'
+    redirect '/decks'
   else
     # an error occurred, re-render the sign-in form, displaying an error
     @error = "Invalid email or password."
@@ -47,14 +47,11 @@ end
 post '/users' do
   # sign-up
 
-  password_salt = BCrypt::Engine.generate_salt
-  password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
-
   @user = User.new params[:user]
   if @user.save
     # successfully created new account; set up the session and redirect
     session[:user_id] = @user.id
-    redirect '/'
+    redirect '/decks'
   else
     # an error occurred, re-render the sign-up form, displaying errors
     erb :sign_up
