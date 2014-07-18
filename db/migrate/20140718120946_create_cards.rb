@@ -3,6 +3,7 @@ class CreateCards < ActiveRecord::Migration
     create_table :cards do |t|
       t.string :hint
       t.string :answer
+      t.references :deck
     end
   end
 end
