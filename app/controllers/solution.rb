@@ -5,9 +5,8 @@
 #We need to add session to round..
 #if user starts new round, Round.new..else, Round.find(params[:id]),
 #then add this to session.
-@current_round=Round.find(session[:round]) 
 
-# Set this in Round class initialization: @guesses_left=3   
+# Set this in Round class initialization: @guesses_left=3
 
 
 
@@ -16,19 +15,21 @@
 
 get 'card_solution/:id' do
 
-#card_id
-#round_id
+  #card_id
+  #round_id
 
-  
+  @current_round=Round.find(session[:round])
+
   card=Card.find(params[:id])
 
   @type=card.guess.type  # type is set to correct or incorrect
   @hint=card.hint       # card hint
   @answer=card.answer   #correct answer
-  
+
   if (@current_round.total_guess_count - @current_round.correct_guess_count) >= 1
     @guesses_left -= 1
-    erb: card_solution  #the next button will route to post 'card/:id'
+
+    erb :card_solution  #the next button will route to post 'card/:id'
   else
     redirect '/game_over'
   end
@@ -40,7 +41,7 @@ end
 get '/game_over' do
   @total_guesses=@current_round.guesses.count   #total guesses
   @total_cards= @current_round.deck.cards.count      # Total cards
-  erb: game_over
+  erb :game_over
 end
 
 
