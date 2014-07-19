@@ -5,6 +5,13 @@
   border: 1px dotted black;
 }
 
+.decks_container {
+  margin: 20px auto;
+  width: 800px;
+  padding: 0px 20px 20px 20px;
+  border: 1px solid black;
+}
+
 .container h1 {
   font-size: 17pt;
 
@@ -72,4 +79,11 @@ form.quirks {
   text-align: right;
   margin-right: 20px;
   width: 200px;
+}
+
+td img { 
+  width: 320px ;
+  height: 320px;
+  border-radius: 50%;
+  padding: 5px;
 }
