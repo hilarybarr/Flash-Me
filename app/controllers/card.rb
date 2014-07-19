@@ -1,8 +1,10 @@
-get "/card/guess/:id" do 
 
+
+
+get "/card/guess" do 
 redirect '/' if current_user.nil? 
-@card = Card.find(params[:id])
-
+@card = current_round.playable_cards.sample
+session[:round] = 1
 erb :card_guess
 end 
 
@@ -11,11 +13,11 @@ post "/card/solution/:id" do
 	card = Card.find(params[:id])
 	guess = params[:guess] 
 	if guess == card.answer
-		score = true 
+		correct = true 
 	else
-		score = false
+		correct = false
 	end
-	Guess.create(type: score, 
+	Guess.create(type: correct, 
 				 user_id: current_user.id, 
 				 card_id: params[:id], 
 				 round_id: session[:round])

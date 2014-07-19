@@ -5,7 +5,7 @@ helpers do
   end
 
   def current_round
-  	@round ||=Round.find(session[:round_id]) if sessions[:round_id]
+  	@round ||=Round.find(session[:round_id]) if session[:round_id]
   end 
 
 end
