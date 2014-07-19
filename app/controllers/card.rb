@@ -9,7 +9,7 @@ erb :card_guess
 end 
 
 post "/card/solution/:id" do
-
+	puts "Kello"
 	card = Card.find(params[:id])
 	guess = params[:guess] 
 	if guess == card.answer
