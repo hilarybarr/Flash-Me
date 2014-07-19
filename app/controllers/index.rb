@@ -57,3 +57,11 @@ post '/users' do
     erb :sign_up
   end
 end
+
+
+get '/decks' do
+  # render decks page
+  session[:user_id]
+
+  erb :decks
+end
