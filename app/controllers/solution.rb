@@ -13,7 +13,7 @@
 
 #----------- Card/Solution -----------
 
-get 'card_solution/:id' do
+get '/card_solution/:id' do
 
   #card_id
   #round_id
@@ -46,16 +46,16 @@ end
 
 
 # When you click Next on card_solution page, gives you new card
-post 'card/:id' do
-  card=Card.where(id: params[:id])
-  @total_cards= @current_round.deck.cards.count
+# post 'card/:id' do
+#   card=Card.where(id: params[:id])
+#   @total_cards= @current_round.deck.cards.count
 
-  until !@current_round.guesses.cards.id.include?(@card_id) #Until this card hasn't been guessed
-    @card_id= (1+rand(@total_cards)) # random number?
-  end
+#   until !@current_round.guesses.cards.id.include?(@card_id) #Until this card hasn't been guessed
+#     @card_id= (1+rand(@total_cards)) # random number?
+#   end
 
-  redirect to ('/card:#{@card_id}')
-end
+#   redirect to ('/card:#{@card_id}')
+# end
 
 
 

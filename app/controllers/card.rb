@@ -1,8 +1,6 @@
 get "/card/guess/:id" do 
 
-# if current_user
-# 	redirect '/'
-# end
+redirect '/' if current_user.nil? 
 @card = Card.find(params[:id])
 
 erb :card_guess
@@ -22,5 +20,7 @@ post "/card/solution/:id" do
 				 card_id: params[:id], 
 				 round_id: session[:round])
 
-	redirect "/card_solution/:id"	
+	redirect "/card_solution/#{card.id}"	
 end 
+
+
