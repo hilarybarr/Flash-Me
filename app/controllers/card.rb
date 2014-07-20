@@ -4,7 +4,6 @@
 get "/card/guess" do 
 redirect '/' if current_user.nil? 
 @card = current_round.playable_cards.sample
-session[:round] = 1
 erb :card_guess
 end 
 
@@ -18,7 +17,7 @@ post "/card/solution/:id" do
 	else
 		correct = false
 	end
-	Guess.create(type: correct, 
+	Guess.create(correct: correct, 
 				 user_id: current_user.id, 
 				 card_id: params[:id], 
 				 round_id: session[:round])
