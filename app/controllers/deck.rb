@@ -19,7 +19,7 @@ post "/deck/setup" do
 	@round = Round.create(
 				 correct_guess_count: 0, 
 				 deck_id: @deck.id,
-				 user_id: current_user)
+				 user_id: current_user.id)
 	@round.guess_count= 3
 	session[:round_id] = @round.id
 	redirect "/card/guess"
