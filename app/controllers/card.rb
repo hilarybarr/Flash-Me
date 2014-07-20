@@ -14,6 +14,7 @@ post "/card/solution/:id" do
 	guess = params[:guess] 
 	if guess == card.answer
 		correct = true 
+		current_round.increment!(:correct_guess_count)
 	else
 		correct = false
 	end
