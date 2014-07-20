@@ -1,7 +1,7 @@
 class CreateGuesses < ActiveRecord::Migration
   def change
     create_table :guesses do |t|
-     t.boolean :type
+     t.boolean :correct
      t.references :user
      t.references :card
      t.references :round
