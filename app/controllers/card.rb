@@ -1,16 +1,13 @@
-
-
-
 get "/card/guess" do 
-redirect '/' if current_user.nil? 
-@card = current_round.playable_cards.sample
-erb :card_guess
+	redirect '/' if current_user.nil? 
+	@card = current_round.playable_cards.sample
+	erb :card_guess
 end 
 
 post "/card/solution/:id" do
 	@card = Card.find(params[:id])
 	guess = params[:guess] 
-	if guess == @card.answer
+	if guess.downcase == @card.answer.downcase
 		correct = true 
 		current_round.increment!(:correct_guess_count)
 	else
