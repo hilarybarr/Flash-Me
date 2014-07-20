@@ -1,0 +1,17 @@
+<div>
+	<p>Game Time:</p>
+
+		<% if @rounds.nil? %>
+		<p>You haven't played any games yet!</p>
+
+	<% else %>
+
+		<% @rounds.each do |round| %>
+
+			<p> For your Game of <%=round.deck.name %></p>
+			<p>You attempted <%=round.guessed_cards.size%> out of <%= round.deck.cards.size %> cards.</p> 
+			<p>Unsurprisingly, you got <%=round.guesses.where(correct: true).size %> correct</p>
+		<% end %>
+	<% end %>
+<a href="/decks">Play again?</a>
+</div>

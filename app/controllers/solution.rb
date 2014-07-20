@@ -12,9 +12,6 @@ get '/card_solution/:id' do
 
   @guess = round.guesses.find_by_card_id(params[:id])
   puts @guess
-  #@type=card.guess.correct  # type is set to correct or incorrect
-  #@hint=card.hint       # card hint
-  #@answer=card.answer   #correct answer
   @incorrect_guesses=(round.guesses.count-round.correct_guess_count).to_i
   @guesses_left= (3-@incorrect_guesses.to_i)
 
