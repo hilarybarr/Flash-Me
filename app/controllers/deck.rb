@@ -1,5 +1,6 @@
 get "/decks" do
   # render decks page
+  redirect '/' if current_user.nil?
   session[:user_id]
   @decks = Deck.all
 
@@ -19,7 +20,7 @@ post "/deck/setup" do
 				 correct_guess_count: 0, 
 				 deck_id: @deck.id,
 				 user_id: current_user)
-
+	@round.guess_count= 3
 	session[:round_id] = @round.id
 	redirect "/card/guess"
 end

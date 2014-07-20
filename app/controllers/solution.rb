@@ -5,14 +5,17 @@
 
 get '/card_solution/:id' do
 
-  # @current_round= round from session 
+  round= current_round 
+  puts round 
 
-  card=Card.find(params[:id])
+  @card=Card.find(params[:id])
 
-  @type=card.guess.type  # type is set to correct or incorrect
-  @hint=card.hint       # card hint
-  @answer=card.answer   #correct answer
-  @incorrect_guesses=(@current_round.guesses.count-@current_round.correct_guess_count).to_i
+  @guess = round.guesses.find_by_card_id(params[:id])
+  puts @guess
+  #@type=card.guess.correct  # type is set to correct or incorrect
+  #@hint=card.hint       # card hint
+  #@answer=card.answer   #correct answer
+  @incorrect_guesses=(round.guesses.count-round.correct_guess_count).to_i
   @guesses_left= (3-@incorrect_guesses.to_i)
 
   case @incorrect_guesses
@@ -26,12 +29,6 @@ get '/card_solution/:id' do
     redirect '/game_over'
   end
 
-# # Deleted the following and instead redirected to card/guess on card_solution page
-#   @total_cards= @current_round.deck.cards.count
-#   @next_card_id= (1+rand(@total_cards))
-#   until !@current_round.guesses.cards.exists?(id: @card_id) #Until this card hasn't been guessed
-#       @next_card_id= (1+rand(@total_cards)) # Randomly chooses which card to display next 
-#   end
 
   erb :card_solution  
 

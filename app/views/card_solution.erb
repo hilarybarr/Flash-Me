@@ -1,12 +1,12 @@
 
 <div class="container">
-  <h1><%= @hint %></h1> </br>
-  <p>The correct answer is <%= @answer %></p> </br>
-  <p>Your answer was <%= @type %></p> </br></br>
+  <h1><%= @card.hint %></h1> </br>
+  <p>The correct answer is <%= @card.answer %></p> </br>
+  <p>Your answer was <%= @guess.correct %></p> </br></br>
 
   <h2>You have <%=@guesses_left %> guesses left. </h2> </br>
   <p> <%= @message %> </p><br><br></br>
-  <a href="/card/guess %>">Next Card</a>
+  <a href="/card/guess">Next Card</a>
 </div>
 
 
