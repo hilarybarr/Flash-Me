@@ -12,29 +12,26 @@ get '/card_solution/:id' do
   @type=card.guess.type  # type is set to correct or incorrect
   @hint=card.hint       # card hint
   @answer=card.answer   #correct answer
-  @guesses_left=@current_round.guess_count
+  @incorrect_guesses=(@current_round.guesses.count-@current_round.correct_guess_count).to_i
+  @guesses_left= (3-@incorrect_guesses.to_i)
 
-  if @type==false   # Decrease guess_count by one is guess was wrong
-    @guesses_left -=1
-  end
-
-  case @guesses_left
-  when 3
+  case @incorrect_guesses
+  when 0
     @message="Nice job! You haven't gotten anything wrong yet."
-  when 2
-    @message="Ok, so you got one wrong, but you are still rockin it!"
   when 1
+    @message="Ok, so you got one wrong, but you are still rockin it!"
+  when 2
     @message="Cmon, you BETTER get the next one right or you're done!"
   else # 0 guesses left
     redirect '/game_over'
   end
 
-# Maybe next_card should be in card Model?
-  @total_cards= @current_round.deck.cards.count
-  @next_card_id= (1+rand(@total_cards))
-  until !@current_round.guesses.cards.exists?(id: @card_id) #Until this card hasn't been guessed
-      @next_card_id= (1+rand(@total_cards)) # Randomly chooses which card to display next 
-  end
+# # Deleted the following and instead redirected to card/guess on card_solution page
+#   @total_cards= @current_round.deck.cards.count
+#   @next_card_id= (1+rand(@total_cards))
+#   until !@current_round.guesses.cards.exists?(id: @card_id) #Until this card hasn't been guessed
+#       @next_card_id= (1+rand(@total_cards)) # Randomly chooses which card to display next 
+#   end
 
   erb :card_solution  
 
@@ -48,27 +45,6 @@ get '/game_over' do
   @message= "Maybe next time :-("
   erb :game_over
 end
-
-
-
-=begin
-# When you click Next on card_solution page, gives you new card
-post '/next_card' do
-  @total_cards= @current_round.deck.cards.count
-
-  @card_id= (1+rand(@total_cards))
-
-  until !@current_round.guesses.cards.exists?(id: @card_id) #Until this card hasn't been guessed
-    @card_id= (1+rand(@total_cards)) # Randomly chooses which card to display next 
-  end
-
-  redirect to ('/card:#{@card_id}')
-end
-=end
-
-
-
-
 
 
 
