@@ -1,6 +1,7 @@
 get '/' do
   # render home page
   @users = User.all
+  redirect '/decks' unless current_user.nil? 
   erb :index
 end
 
