@@ -2,11 +2,9 @@ class Round < ActiveRecord::Base
   # Remember to create a migration!
   
   # Deleted the attr_accessor and instead used correct_guess_count method
-  # attr_accessor :guess_count
+  attr_accessor :guess_count
 
-  # def initialize
-  # 	@guess_count=3
-  # end
+
 
   belongs_to :user
   belongs_to :deck
