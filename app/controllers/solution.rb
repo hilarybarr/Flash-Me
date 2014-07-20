@@ -37,8 +37,8 @@ end
 
 # Game over page
 get '/game_over' do
-  @total_guesses=@current_round.guesses.count   #total guesses
-  @total_cards= @current_round.deck.cards.count      # Total cards
+  @total_guesses= current_round.guesses.count   #total guesses
+  @total_cards= current_round.deck.cards.count      # Total cards
   @message= "Maybe next time :-("
   erb :game_over
 end
