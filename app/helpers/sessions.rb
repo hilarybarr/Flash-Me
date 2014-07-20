@@ -4,5 +4,8 @@ helpers do
     @user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def current_round
+  	@round ||=Round.find(session[:round_id]) if session[:round_id]
+  end 
 
 end

@@ -8,8 +8,8 @@
       <tr>
 
         <td>
-          <center><h5>Capitals of The World</h5></center>
-          <a href="/card/:id"><img src="http://th04.deviantart.net/fs70/PRE/i/2014/015/9/d/awakening_paris_by_matthias_haker-d72a61i.jpg" ></a>
+          <center><h5><%=@decks.find_by_name("Capitals of The World").name%></h5></center>
+          <a href="/game_deck/<%=@decks.find_by_name("Capitals of The World").id%>"><img src="http://th04.deviantart.net/fs70/PRE/i/2014/015/9/d/awakening_paris_by_matthias_haker-d72a61i.jpg" ></a>
         </td>
           <td>
             <center><h5>US State Capitals</h5></center>
