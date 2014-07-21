@@ -1,7 +1,7 @@
 
 
-<div>
-	<p>You've selected the <b><%=@deck.name%></b> Deck.</p> 
+<div class = container>
+	<center><p>You've selected the <b><%=@deck.name%></b> Deck.</p> 
 	<p>Would you like to play a round with this Deck?</p>
 	<p>It consists of <%= @deck.cards.length %> cards and you can get a maximum of 3 cards wrong before you lose!</p>
 
@@ -10,5 +10,6 @@
 </form>
 <form action="/decks" method="get">
 	<button>Take Me Back!</button>		
-</form
+</form>
+</center>
 </div>
