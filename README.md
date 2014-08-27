@@ -1,4 +1,4 @@
 Web-Flash-Cards-Multiple-Decks
 ==============================
 
-Beep Boop Beep
+A flash-card app using Sinatra, JQuery, JavaScript, HTML5, and CSS.
